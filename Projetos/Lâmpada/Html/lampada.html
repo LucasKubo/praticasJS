@@ -9,21 +9,6 @@
 <body>
     <h1>Acenda a Lâmpada</h1>
     <img src ='../img/apagada.jpg' id='light'>
-    <script>
-        let statusLampada = 'apagada';
-        let lampada = document.getElementById('light');
-        lampada.addEventListener('click',() => {
-            if(statusLampada == 'apagada'){
-                console.log(statusLampada);
-                lampada.src = '../img/acesa.jpg';
-                //lampada.setAttribute('src', '../img/acesa.jpg');
-                statusLampada = 'acesa';
-            }
-            if(statusLampada == 'acesa'){
-                lampada.setAttribute('src', '../img/apagada.jpg');
-                statusLampada = 'apagada'
-            }
-        })
-    </script>
+    <script src="../Js/script.js"></script>
 </body>
 </html>
