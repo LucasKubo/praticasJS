@@ -1,54 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
-    <title>dev.finance$</title>
-  </head>
-  <body>
-    <header>
-        <p><img src="assets/logo.svg" id="logo"></p>
-        <div class="card-container">
-            <div class="card">
-                <h3>Entradas</h3>
-                <h2>R$17.000</h2>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css" />
+        <title>dev.finance$</title>
+    </head>
+    <body>
+        <header>
+            <p><img src="assets/logo.svg" id="logo" /></p>
+        </header>
+        <main>
+            <div class="card-container">
+                <div class="card">
+                    <h4>
+                        <span>Entradas</span>
+                        <img width="20" src="assets/income.svg" id="income" />
+                    </h4>
+                    <h2>R$17.000</h2>
+                </div>
+                <div class="card">
+                    <h4>
+                        <span>Saídas</span>
+                        <img width="20" src="assets/expense.svg" id="expense" />
+                    </h4>
+                    <h2>R$17.000</h2>
+                </div>
+                <div class="card">
+                    <h4>
+                        <span>Total</span>
+                        <img width="20" src="assets/total.svg" id="total" />
+                    </h4>
+                    <h2>R$17.000</h2>
+                </div>
             </div>
-            <div class="card">
-                <h3>Saídas</h3>
-                <h2>R$17.000</h2>
-            </div>
-            <div class="card">
-                <h3>Total</h3>
-                <h2>R$17.000</h2>
-            </div>
-        </div>
-    </header>
-    <main>
-        <section class="tabela-container">
-            <table class="tabela">
-                <thead>
-                    <tr class="tabela-cabeçalho">
-                        <td class="tabela-cabeçalho-coluna">Descrição</td>
-                        <td class="tabela-cabeçalho-coluna">Valor</td>
-                        <td class="tabela-cabeçalho-coluna">Data</td>
-                    </tr>
-                </thead>
-                <tbody class="tabela-corpo">
-                    <tr class="tabela-corpo-linha">
-                        <td class="tabela-corpo-coluna">Desenvolvimento de Site</td>
-                        <td class="tabela-corpo-coluna">R$ 12.000,00</td>
-                        <td class="tabela-corpo-coluna">13/04/2020</td>
-                    </tr>
-                    <tr class="tabela-corpo-linha">
-                        <td>Computador</td>
-                        <td>R$ 5.000,00</td>
-                        <td>02/02/2022</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
-  </body>
+            
+            <section class="tabela-container">
+                <div class="container-nova-transacao"><a href="#" >+Nova Transação</a></div>
+                <table class="tabela">
+                    <thead>
+                        <tr class="tabela-cabeçalho">
+                            <td class="tabela-cabeçalho-coluna">Descrição</td>
+                            <td class="tabela-cabeçalho-coluna">Valor</td>
+                            <td class="tabela-cabeçalho-coluna">Data</td>
+                        </tr>
+                    </thead>
+                    <tbody class="tabela-corpo">
+                        <tr class="tabela-corpo-linha">
+                            <td class="tabela-corpo-descricao">Desenvolvimento de Site</td>
+                            <td class="tabela-corpo-valor">R$ 12.000,00</td>
+                            <td class="tabela-corpo-data">13/04/2020</td>
+                            <td class="tabela-corpo-botao"><img src="assets/minus.svg"></td>
+                        </tr>
+                        <tr class="tabela-corpo-linha">
+                            <td class="tabela-corpo-descricao">Computador</td>
+                            <td class="tabela-corpo-valor">R$ 5.000,00</td>
+                            <td class="tabela-corpo-data">02/02/2022</td>
+                            <td class="tabela-corpo-botao"><img src="assets/minus.svg"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </body>
 </html>
