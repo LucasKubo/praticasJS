@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Seletores DOM</title>
+    </head>
+    <body>
+        <div id="seletor1">Seletor por Id</div>
+        <div class="seletor2">Seletor por classe</div>
+        <div class="seletor2">Seletor por classe 2</div>
+        <div name="nome">
+            Seletor por nome (não muito indicado para client-side)
+        </div>
+        <div><a href="#">Link</a></div>
+        <div>
+            <button type="button" id="botao-insert">Inserir input</button>
+            <button type="button" id="botao-delete">Deletar input</button>
+        </div>
+    </body>
+</html>
+<script>
+    //Selecionando elemento por Id
+    //innerHTML também pega as tags filhas do elemento
+    document.getElementById('seletor1').innerHTML =
+        'Seletor por Id Selecionado';
+
+    //Selecionando elemento por Class -> Retorna um HTML Collection, onde cada elemento é uma tag com a classe
+    //textContent pega apenas o texto dentro do elemento
+    document.getElementsByClassName('seletor2')[0].innerHTML =
+        'Seletor por classe Selecionado';
+    document.getElementsByClassName('seletor2')[1].innerHTML =
+        'Seletor por classe 2 Selecionado';
+
+    //Selecionando por name -> Retorna um HTML Collection, onde cada elemento é uma tag com o name
+    document.getElementsByName('nome')[0].innerHTML =
+        'Seletor por nome (não muito indicado para client-side) Selecionado';
+
+    //Selecionando elemento por Tagname -> Retorna um HTML Collection, onde cada elemento é uma tag
+    let tagsNamesElements = document.getElementsByTagName('div');
+    console.log(tagsNamesElements); //Retorno esperado -> HTMLCollection(6)
+
+    //Selecionando por querySelector (seletor igual ao do CSS, por isso precisa do # ou .)
+    //Pega apenas o primeiro elemento
+    let elementoQuerySelector = document.querySelector('#seletor1');
+    //Pega todos os elementos
+    let elementosQuerySelector = document.querySelectorAll('.seletor2');
+
+    //Atribuindo atributos ao elemento do querySelector
+    elementoQuerySelector.setAttribute('class', 'atributoClass');
+    console.log(elementoQuerySelector); // Retorno -> div#seletor1.atributoClass
+
+    //Todos os atributos do Elemento html são propriedades do obejto JS
+    //Mudando valor de uma propriedade
+    let elementoLinkQuerySelector = document.querySelector('a');
+    elementoLinkQuerySelector.href = 'https://www.google.com/';
+    //Removendo elemento
+    elementoLinkQuerySelector.remove();
+
+    //Adicionando elemento que não existe no fim do HTML
+    let link = document.createElement('a');
+    link.href = '#';
+    document.body.append(link);
+    //Adicionando texto ao link // textContent é o atributo mais recomendado
+    link.textContent = 'LINK';
+
+    //Adicionando conteúdo com base em um evento
+    let botaoInsertHTML = document.querySelector('#botao-insert');
+
+    let contador = 0;
+    //Adicionando evento ao Botão
+    botaoInsertHTML.addEventListener('click', () => {
+        //Criando e 'setando' elemento
+        contador++;
+        let elementoNovo = document.createElement('input');
+        elementoNovo.type = 'text';
+        elementoNovo.name ='name-input' + contador;
+        elementoNovo.id = contador;
+        //document.body.after(botaoInsertHTML, elementoNovo);
+        document.body.append(elementoNovo);
+    });
+
+    //Adicionando botão que remove input
+    let botaoDeleteHtml = document.querySelector('#botao-delete');
+    botaoDeleteHtml.addEventListener("click", ()=>{
+        let inputDeleteElement = document.getElementById(contador);
+        inputDeleteElement.remove();
+        contador--;
+    })
+</script>
