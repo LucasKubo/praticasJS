@@ -86,3 +86,80 @@ main{
     font-weight: bold;
     font-size: 12px;
 }
+
+/*=========Modal==============*/
+.modal-overlay{
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0,0,0,0.7);
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal{
+    background-color:#f0f2f5;
+    padding: 2.4rem;
+    position: relative;
+    width: 50%;
+}
+
+.modal-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modal-form input {
+    height: 2rem;
+    margin-bottom: 1rem;
+}
+
+.modal-form input:nth-child(3){
+    margin-bottom: 0.1rem;
+}
+
+.modal-form p {
+    font-size: 10px;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 0.8rem;
+}
+
+.button-container{
+    display: flex;
+    justify-content:space-between;
+}
+
+.modal-form button{
+    height: 2rem;
+    width: 48%;
+}
+
+.modal-form button:hover{
+    cursor: pointer;
+}
+
+#button-cancelar{
+    border-style: none;
+    border: 2px solid red;
+    border-radius: 3px;
+    color:red;
+}
+
+#button-salvar{
+    border-style: none;
+    border: 2px solid #49AA26;
+    border-radius: 3px;
+    color:white;
+    background-color:#49AA26;
+}

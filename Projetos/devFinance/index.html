@@ -4,9 +4,12 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Roboto+Condensed:wght@300&display=swap"
+            rel="stylesheet"
+        />
         <link rel="stylesheet" href="style.css" />
         <title>dev.finance$</title>
     </head>
@@ -38,9 +41,11 @@
                     <h2>R$17.000</h2>
                 </div>
             </div>
-            
+
             <section class="tabela-container">
-                <div class="container-nova-transacao"><a href="#" >+Nova Transação</a></div>
+                <div class="container-nova-transacao">
+                    <a href="#" id="nova-transacao">+Nova Transação</a>
+                </div>
                 <table class="tabela">
                     <thead>
                         <tr class="tabela-cabeçalho">
@@ -51,20 +56,46 @@
                     </thead>
                     <tbody class="tabela-corpo">
                         <tr class="tabela-corpo-linha">
-                            <td class="tabela-corpo-descricao">Desenvolvimento de Site</td>
+                            <td class="tabela-corpo-descricao">
+                                Desenvolvimento de Site
+                            </td>
                             <td class="tabela-corpo-valor">R$ 12.000,00</td>
                             <td class="tabela-corpo-data">13/04/2020</td>
-                            <td class="tabela-corpo-botao"><img src="assets/minus.svg"></td>
+                            <td class="tabela-corpo-botao">
+                                <img src="assets/minus.svg" />
+                            </td>
                         </tr>
                         <tr class="tabela-corpo-linha">
                             <td class="tabela-corpo-descricao">Computador</td>
                             <td class="tabela-corpo-valor">R$ 5.000,00</td>
                             <td class="tabela-corpo-data">02/02/2022</td>
-                            <td class="tabela-corpo-botao"><img src="assets/minus.svg"></td>
+                            <td class="tabela-corpo-botao">
+                                <img src="assets/minus.svg" class="img-remove"/>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </section>
+
+            <div class="modal-overlay">
+                <div class="modal">
+                    <form class="modal-form">
+                        <h3>Nova Transação</h3>
+                        <input id="input-descricao" type="text" placeholder="Descrição" />
+                        <input id="input-valor" type="number" placeholder="0,00" />
+                        <p>
+                            Use o sinal -(negativo) para despesas e , (vírgula)
+                            para casas decimais
+                        </p>
+                        <input id="input-data" type="date" />
+                        <div class="button-container">
+                            <button id="button-cancelar">Cancelar</button>
+                            <button id="button-salvar">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </main>
     </body>
+    <script src="script.js"></script>
 </html>
