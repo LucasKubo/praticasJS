@@ -1,70 +1,91 @@
-//Meios de interacao do usuario (botoes)
-let botaoNovaTransacao = document.querySelector('#nova-transacao');
-let modal = document.querySelector('.modal-overlay');
-let botaoCancelar = document.querySelector('#button-cancelar');
-let botaoSalvar = document.querySelector('#button-salvar');
+const Modal = {
+    open() {
+        document.querySelector('.modal-overlay').classList.add('active');
+    },
+    close() {
+        document.querySelector('.modal-overlay').classList.remove('active');
+    },
+};
 
-//Abrindo modal para nova transacao
-botaoNovaTransacao.addEventListener('click',() => {
-    modal.className = 'modal-overlay active';
-})
+//Array que contém todas as transações
+const transactions = [
+    {
+        id: 1,
+        description: 'Luz',
+        amount: -50000,
+        date: '23/01/2022',
+    },
+    {
+        id: 2,
+        description: 'Criação website',
+        amount: 20000,
+        date: '23/01/2022',
+    },
+    {
+        id: 3,
+        description: 'Internet',
+        amount: -40000,
+        date: '23/01/2022',
+    },
+];
 
-//fechando modal
-botaoCancelar.addEventListener('click',() => {
-    modal.className = 'modal-overlay';
-})
+const Transaction = {
+    incomes() {
+        //Somar entradas
+    },
+    expenses() {
+        //Somar as saídas
+    },
+    total() {
+        //Entradas - saídas
+    },
+};
 
-//Selecionando inputs
+const Utils = {
+    formatCurrency(value){
+        const signal = Number(value) < 0 ? "-" : "";
 
+        //Regex que pega tudo que não for número na String
+        value = String(value).replace(/\D/g, "");
 
-let tabelaCorpo = document.querySelector('.tabela-corpo');
+        value = Number(value) / 100;
 
-console.log(tabelaCorpo);
-console.log(tabelaCorpo.children[0]);
+        //Formatando para a moeda brasileira
+        value = value.toLocaleString("pt-BR",{
+            style: "currency",
+            currency: "BRL"
+        })
 
-botaoSalvar.addEventListener('click',adicionarLinha);
-
-function adicionarLinha() {
-    let descricaoInput = document.querySelector('#input-descricao').value;
-    let valorInput = document.querySelector('#input-valor').value;
-    let dataInput = document.querySelector('#input-data').value;
-
-    let tr = document.createElement('tr');
-    tr.className = 'tabela-corpo-linha';
-
-    let tdDescricao = document.createElement('td');
-    tdDescricao.className = 'tabela-corpo-descricao';
-    let descricaoNova = document.createTextNode(descricaoInput);
-    tdDescricao.appendChild(descricaoNova);
-
-    let tdValor = document.createElement('td');
-    tdValor.className = 'tabela-corpo-valor';
-    let valorNovo = document.createTextNode("R$" + valorInput);
-    tdValor.appendChild(valorNovo);
-
-    let tdData = document.createElement('td');
-    tdData.className = 'tabela-corpo-data';
-    let dataNova = document.createTextNode(dataInput);
-    tdData.appendChild(dataNova);
-
-    let tdLogoRemover = document.createElement('td');
-    let imgLogoRemover = document.createElement('img');
-    tdLogoRemover.className = 'tabela-corpo-botao';
-    imgLogoRemover.src = 'assets/minus.svg';
-    imgLogoRemover.className = 'img-remove';
-    tdLogoRemover.appendChild(imgLogoRemover);
-    
-    tr.appendChild(tdDescricao);
-    tr.appendChild(tdValor);
-    tr.appendChild(tdData);
-    tr.appendChild(tdLogoRemover);
-
-    tabelaCorpo.append(tr);
+        return signal + value
+    } 
 }
 
-//Referenciando botao de remover linha
-let imgRemove = document.getElementsByClassName('img-remove');
+const DOM = {
+    transactionContainer: document.querySelector('.tabela-corpo'),
+    addTransaction(transaction, index) {
+        const tr = document.createElement('tr');
+        tr.className = 'tabela-corpo-linha';
+        tr.innerHTML = this.innerHTMLTransaction(transaction);
+        this.transactionContainer.appendChild(tr);
+    },
+    innerHTMLTransaction(transaction) {
+        const CSSclass = transaction.amount > 0 ? "tabela-corpo-valor income" : "tabela-corpo-valor expense";
+ 
+        const html = 
+        `
+            <td class="tabela-corpo-descricao">
+                ${transaction.description}
+            </td>
+            <td class="${CSSclass}">${Utils.formatCurrency(transaction.amount)}</td>
+            <td class="tabela-corpo-data">${transaction.date}</td>
+            <td class="tabela-corpo-botao">
+                <img src="assets/minus.svg" />
+            </td>
+        `;
+        return html;
+    },
+};
 
-for (let i = 0; i < imgRemove.length; i++) {
-
-}
+transactions.forEach((transaction) => {
+    DOM.addTransaction(transaction);
+});

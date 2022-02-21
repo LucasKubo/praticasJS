@@ -44,7 +44,7 @@
 
             <section class="tabela-container">
                 <div class="container-nova-transacao">
-                    <a href="#" id="nova-transacao">+Nova Transação</a>
+                    <a href="#" id="nova-transacao" onclick="Modal.open()">+Nova Transação</a>
                 </div>
                 <table class="tabela">
                     <thead>
@@ -55,24 +55,6 @@
                         </tr>
                     </thead>
                     <tbody class="tabela-corpo">
-                        <tr class="tabela-corpo-linha">
-                            <td class="tabela-corpo-descricao">
-                                Desenvolvimento de Site
-                            </td>
-                            <td class="tabela-corpo-valor">R$ 12.000,00</td>
-                            <td class="tabela-corpo-data">13/04/2020</td>
-                            <td class="tabela-corpo-botao">
-                                <img src="assets/minus.svg" />
-                            </td>
-                        </tr>
-                        <tr class="tabela-corpo-linha">
-                            <td class="tabela-corpo-descricao">Computador</td>
-                            <td class="tabela-corpo-valor">R$ 5.000,00</td>
-                            <td class="tabela-corpo-data">02/02/2022</td>
-                            <td class="tabela-corpo-botao">
-                                <img src="assets/minus.svg" class="img-remove"/>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </section>
@@ -82,14 +64,14 @@
                     <form class="modal-form">
                         <h3>Nova Transação</h3>
                         <input id="input-descricao" type="text" placeholder="Descrição" />
-                        <input id="input-valor" type="number" placeholder="0,00" />
-                        <p>
+                        <input id="input-valor" type="number" placeholder="0,00" step='0.01'/>
+                        <small>
                             Use o sinal -(negativo) para despesas e , (vírgula)
                             para casas decimais
-                        </p>
+                        </small>
                         <input id="input-data" type="date" />
                         <div class="button-container">
-                            <button id="button-cancelar">Cancelar</button>
+                            <button id="button-cancelar" onclick="Modal.close()">Cancelar</button>
                             <button id="button-salvar">Salvar</button>
                         </div>
                     </form>
