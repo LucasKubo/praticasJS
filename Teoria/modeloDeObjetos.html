@@ -1,0 +1,28 @@
+<script>
+
+    /*Propriedade prototype*/
+    //Para observar os resultados desse código, utilizar o console do navegador
+    const testArray = [1,2,3];
+    //testArray.__proto__ => Array.prototype => Object.prototype => null
+    const testObj = {};
+    //testObj.__proto__ => Object.prototype => null
+    const testFunc = function (){};
+    //testFunc.__proto__ => Function.prototype => Object.prototype => null
+
+    /*Atribuição por referência entre objetos*/
+    const obj1 = {num:2};
+    //Nesse caso, obj2 aponta para o mesmo lugar de memória que obj1. (Refêrencia)
+    const obj2 = obj1;
+    //Sendo assim, ao mudar um valor do obj2, o valor também muda no obj1.
+    obj2.num = 3;
+    console.log(obj1.num);// Saída esperada -> 3;
+
+    /*Atribuição por valor entre objetos*/
+    const obj3 = {nome:"Lucas"};
+    //Utilizando o "object.create()", obj4 não aponta para o mesmo lugar da memória. obj4 apenas copiou os valores de obj3.
+    const obj4 = Object.create(obj3);
+    //Sendo assim, ao mudar um valor do obj4, o valor não muda no obj3.
+    obj4.nome = "Victor";
+    console.log(obj3.nome);//Saída esperada -> Lucas
+
+    </script>

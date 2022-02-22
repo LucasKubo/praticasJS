@@ -1,0 +1,23 @@
+<script>
+    /*Criando classe Pessoa*/
+    class Pessoa {
+        constructor(nome, idade){
+            this.nome = nome;
+            this.idade = idade;
+        }
+    }
+    const p = new Pessoa("Lucas", 20);
+    console.log(p);// Pessoa {idade: 20, nome: "Lucas"};
+
+    /*Criando classe Aluno que herda de Pessoa*/
+    class Aluno extends Pessoa {
+        constructor(nome,idade, matricula){
+            super(nome, idade);
+            this.matricula = matricula;
+        };
+    }
+    const a = new Aluno("Victor",18, 19234);
+    console.log(a);//Aluno {idade: 18, matricula: 19234, nome: "Victor"}
+    //a.prototype => Pessoa.prototype => obejto.prototype => null
+    
+</script>
