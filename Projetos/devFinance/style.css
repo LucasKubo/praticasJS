@@ -76,6 +76,7 @@ main{
     border-radius: 4px;
 }
 .tabela-corpo-descricao{
+    padding-left: 2em;
     margin: 2em;
     color:black;
     font-weight: bold;
