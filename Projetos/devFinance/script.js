@@ -7,32 +7,39 @@ const Modal = {
     },
 };
 
-//Array que contém todas as transações
-const transactions = [
-    {
-        id: 1,
-        description: 'Luz',
-        amount: -50000,
-        date: '23/01/2022',
-    },
-    {
-        id: 2,
-        description: 'Criação website',
-        amount: 20000,
-        date: '23/01/2022',
-    },
-    {
-        id: 3,
-        description: 'Internet',
-        amount: -40000,
-        date: '23/01/2022',
-    },
-];
-
 const Transaction = {
+    //Array que contém todas as transações
+    all:[
+        {
+            description: 'Luz',
+            amount: -50000,
+            date: '23/01/2022',
+        },
+        {
+            description: 'Criação website',
+            amount: 20000,
+            date: '23/01/2022',
+        },
+        {
+            description: 'Internet',
+            amount: -40000,
+            date: '23/01/2022',
+        },
+    ],
+    
+    addTransaction(transaction){
+        Transaction.all.push(transaction);
+        App.reload();
+    },
+
+    removeTransaction(index){
+        Transaction.all.splice(index, 1);
+        App.reload();
+    },
+
     incomes() {
         let totalIncome = 0;
-        transactions.forEach(transaction => {
+        Transaction.all.forEach(transaction => {
             if(transaction.amount > 0){
                 totalIncome += transaction.amount;
             }
@@ -41,7 +48,7 @@ const Transaction = {
     },
     expenses() {
         let totalExpense = 0;
-        transactions.forEach(transaction => {
+        Transaction.all.forEach(transaction => {
             if(transaction.amount < 0){
                 totalExpense += transaction.amount;
             }
@@ -108,10 +115,28 @@ const DOM = {
         document.getElementById("totalDisplay")
         .textContent = Utils.formatCurrency(Transaction.total());
     },
+    clearTransaction() {
+        document.querySelector(".tabela-corpo").innerHTML = "";
+    },
 };
 
-transactions.forEach((transaction) => {
-    DOM.addTransaction(transaction);
-});
+//Objeto que trata o estado da página
+let App = {
+    //Inicia a página
+    init(){
+        //Limpando tabela de transacoes
+        DOM.clearTransaction();
+        //Adicionando transacoes ao HTML 
+        Transaction.all.forEach((transaction) => {
+            DOM.addTransaction(transaction);
+        });
+        //Atualiza valores do display (incomes, expenses, total)
+        DOM.updateTransaction();
+    },
+    //Recarrega a página (utilizado toda vez que há alguma alteração do estado)
+    reload(){
+        App.init();
+    }
+}
 
-DOM.updateTransaction();
+App.init();
