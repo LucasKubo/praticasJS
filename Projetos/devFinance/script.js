@@ -31,13 +31,25 @@ const transactions = [
 
 const Transaction = {
     incomes() {
-        //Somar entradas
+        let totalIncome = 0;
+        transactions.forEach(transaction => {
+            if(transaction.amount > 0){
+                totalIncome += transaction.amount;
+            }
+        })
+        return totalIncome;
     },
     expenses() {
-        //Somar as saídas
+        let totalExpense = 0;
+        transactions.forEach(transaction => {
+            if(transaction.amount < 0){
+                totalExpense += transaction.amount;
+            }
+        })
+        return totalExpense;
     },
     total() {
-        //Entradas - saídas
+        return Transaction.incomes() + Transaction.expenses();
     },
 };
 
@@ -62,12 +74,14 @@ const Utils = {
 
 const DOM = {
     transactionContainer: document.querySelector('.tabela-corpo'),
+    //Recebe uma transacao e adiciona à página
     addTransaction(transaction, index) {
         const tr = document.createElement('tr');
         tr.className = 'tabela-corpo-linha';
         tr.innerHTML = this.innerHTMLTransaction(transaction);
         this.transactionContainer.appendChild(tr);
     },
+    //Recebe uma transacao e transforma em HTML
     innerHTMLTransaction(transaction) {
         const CSSclass = transaction.amount > 0 ? "tabela-corpo-valor income" : "tabela-corpo-valor expense";
  
@@ -84,8 +98,20 @@ const DOM = {
         `;
         return html;
     },
+    updateTransaction() {
+        document.getElementById("incomeDisplay")
+        .textContent = Utils.formatCurrency(Transaction.incomes());
+
+        document.getElementById("expenseDisplay")
+        .textContent = Utils.formatCurrency(Transaction.expenses());
+
+        document.getElementById("totalDisplay")
+        .textContent = Utils.formatCurrency(Transaction.total());
+    },
 };
 
 transactions.forEach((transaction) => {
     DOM.addTransaction(transaction);
 });
+
+DOM.updateTransaction();
