@@ -7,10 +7,20 @@ const Modal = {
     },
 };
 
+const Storage = {
+    getItems(){
+        //JSON.parse -> converte String em Array
+        return JSON.parse(localStorage.getItem('dev.finances:transaction')) || [];
+    },
+    setItems(value){
+        //JSON.stringify -> transforma um array em String, pois é a forma que o localStorage armazena.
+        localStorage.setItem('dev.finances:transaction',JSON.stringify(value));
+    }
+}
+
 const Transaction = {
     //Array que contém todas as transações
-    all:[
-    ],
+    all:Storage.getItems(),
 
     addTransaction(transaction){
         Transaction.all.push(transaction);
@@ -125,6 +135,7 @@ const App = {
         });
         //Atualiza valores do display (incomes, expenses, total)
         DOM.updateTransaction();
+        Storage.setItems(Transaction.all);
     },
     //Recarrega a página (utilizado toda vez que há alguma alteração do estado)
     reload(){
