@@ -92,11 +92,12 @@ const DOM = {
     addTransaction(transaction, index) {
         const tr = document.createElement('tr');
         tr.className = 'tabela-corpo-linha';
-        tr.innerHTML = this.innerHTMLTransaction(transaction);
+        tr.innerHTML = this.innerHTMLTransaction(transaction, index);
+        tr.dataset.index = index;
         this.transactionContainer.appendChild(tr);
     },
     //Recebe uma transacao e transforma em HTML
-    innerHTMLTransaction(transaction) {
+    innerHTMLTransaction(transaction, index) {
         const CSSclass = transaction.amount > 0 ? "tabela-corpo-valor income" : "tabela-corpo-valor expense";
  
         const html = 
@@ -107,7 +108,7 @@ const DOM = {
             <td class="${CSSclass}">${Utils.formatCurrency(transaction.amount)}</td>
             <td class="tabela-corpo-data">${transaction.date}</td>
             <td class="tabela-corpo-botao">
-                <img src="assets/minus.svg" />
+                <img onclick="Transaction.removeTransaction(this.index)" src="assets/minus.svg" />
             </td>
         `;
         return html;
@@ -134,8 +135,8 @@ let App = {
         //Limpando tabela de transacoes
         DOM.clearTransaction();
         //Adicionando transacoes ao HTML 
-        Transaction.all.forEach((transaction) => {
-            DOM.addTransaction(transaction);
+        Transaction.all.forEach((transaction, index) => {
+            DOM.addTransaction(transaction, index);
         });
         //Atualiza valores do display (incomes, expenses, total)
         DOM.updateTransaction();
@@ -145,7 +146,6 @@ let App = {
         App.init();
     }
 }
-
 
 let Form = {
     description: document.getElementById('input-descricao'),
