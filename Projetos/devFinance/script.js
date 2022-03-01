@@ -10,23 +10,8 @@ const Modal = {
 const Transaction = {
     //Array que contém todas as transações
     all:[
-        {
-            description: 'Luz',
-            amount: -50000,
-            date: '23/01/2022',
-        },
-        {
-            description: 'Criação website',
-            amount: 20000,
-            date: '23/01/2022',
-        },
-        {
-            description: 'Internet',
-            amount: -40000,
-            date: '23/01/2022',
-        },
     ],
-    
+
     addTransaction(transaction){
         Transaction.all.push(transaction);
         App.reload();
@@ -108,7 +93,7 @@ const DOM = {
             <td class="${CSSclass}">${Utils.formatCurrency(transaction.amount)}</td>
             <td class="tabela-corpo-data">${transaction.date}</td>
             <td class="tabela-corpo-botao">
-                <img onclick="Transaction.removeTransaction(this.index)" src="assets/minus.svg" />
+                <img id="testeImg" onclick="Transaction.removeTransaction(${index})" src="assets/minus.svg" />
             </td>
         `;
         return html;
@@ -129,7 +114,7 @@ const DOM = {
 };
 
 //Objeto que trata o estado da página
-let App = {
+const App = {
     //Inicia a página
     init(){
         //Limpando tabela de transacoes
@@ -147,7 +132,7 @@ let App = {
     }
 }
 
-let Form = {
+const Form = {
     description: document.getElementById('input-descricao'),
     amount: document.getElementById('input-valor'),
     date: document.getElementById('input-data'),
