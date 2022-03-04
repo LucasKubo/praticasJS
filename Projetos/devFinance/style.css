@@ -25,6 +25,7 @@ main{
     top: -10%;
     left: 10%;
     filter: drop-shadow(0px, 4px, 4px,rgba(0, 0, 0, 0.25))
+    
 }
 .card-container :nth-child(3){
     background-color: #49AA26;
@@ -41,6 +42,7 @@ main{
     display: flex;
     justify-content: space-between;
 }
+
 /*=========Botão de nova transação==============*/
 .container-nova-transacao{
     clear:both;
@@ -169,4 +171,33 @@ main{
     border-radius: 3px;
     color:white;
     background-color:#49AA26;
+}
+
+@media (max-width: 950px){
+    header{
+        height: 4em;
+    }
+    main{
+        padding-top:20px;
+    }
+    .card-container{
+        width:100%;
+        position: static;
+        align-items: center;
+        justify-content:space-around;
+        flex-wrap: wrap;
+        margin:0;
+    }
+    .card{
+        width: 90%;
+        margin-bottom:1rem;
+    }
+    .tabela-container{
+        justify-content: inherit;
+        width: 90%;
+    }
+    .tabela{
+        width: 100%;
+        font-size: 20px;
+    }
 }
